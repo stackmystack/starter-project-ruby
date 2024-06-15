@@ -1,0 +1,9 @@
+yardoc
+--fail-on-warning
+--output-dir rdoc
+lib/**/*.rb
+bin/repl.rb
+-
+README.md
+LICENSE
+doc/*
