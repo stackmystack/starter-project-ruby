@@ -16,15 +16,20 @@ RAKE := $(EXEC) rake
 IRB  := $(EXEC) irb
 RUBY := $(EXEC) ruby
 
-.PHONY: all debug doc gem help init publish repl run setup test 
+.PHONY: all check debug doc doc-stats gem help init publish repl run setup test
 
 all: test
+
+check: doc-stats lint
 
 debug:
 	$(EXEC) rdbg -x .rdbg.breakpoints -c -- $(RUBY) -r ./$(LIB_FILE) $(MAIN_SCRIPT) $(ARGS)
 
 doc:
-	$(EXEC) yardoc
+	$(EXEC) yard
+
+doc-stats:
+	$(EXEC) yard stats --list-undoc
 
 gem:
 	mkdir -p $(PKG_OUT)
@@ -55,8 +60,10 @@ test:
 help:
 	@echo "Usage:"
 	@echo "  make all              # Alias to make test"
+	@echo "  make check            # make doc-stats lint"
 	@echo "  make debug            # rdbg $(MAIN_SCRIPT)"
 	@echo "  make doc              # Generate documentation"
+	@echo "  make doc-stats        # Documentation stats to see details"
 	@echo "  make gem              # Create a .gem"
 	@echo "  make help             # Display this help message"
 	@echo "  make init             # Init the project with a name of your choice"
