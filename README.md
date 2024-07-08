@@ -1,5 +1,7 @@
 # Starter Project: Ruby
 
+How to init:
+
 ```sh
 git clone https://github.com/stackmystack/starter-project-ruby your-project
 cd your-project
@@ -30,11 +32,11 @@ gem 'your_gem_name'
 And then execute:
 
 ```sh
-$ bundle install
+bundle install
 ```
 
 Or install it yourself as:
 
 ```sh
-$ gem install your_gem_name
+gem install your_gem_name
 ```

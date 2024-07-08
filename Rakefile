@@ -6,6 +6,7 @@ require 'rake/testtask'
 require 'bundler/gem_tasks'
 require 'minitest/test_task'
 require 'shellwords'
+require 'yard'
 
 require_relative 'lib/your_gem_name/version'
 
@@ -18,11 +19,17 @@ Minitest::TestTask.create do |t|
   t.verbose = false
 end
 
-Rake::RDocTask.new('doc') do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.rdoc_files.include('ext/**/*.c')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+YARD::Rake::YardocTask.new do |t|
+  t.files   = ['lib/**/*.rb']
+  t.options = %w[
+    --output-dir doc
+    --markup markdown
+    --fail-on-warning
+    --readme README.md
+    - LICENSE docs/*
+  ]
 end
+task doc: :yard
 
 desc 'Run all tests or a specific test'
 task default: :test

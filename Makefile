@@ -26,7 +26,7 @@ debug:
 	$(EXEC) rdbg -x .rdbg.breakpoints -c -- $(RUBY) -r ./$(LIB_FILE) $(MAIN_SCRIPT) $(ARGS)
 
 doc:
-	$(EXEC) yard
+	$(RAKE) yard
 
 doc-stats:
 	$(EXEC) yard stats --list-undoc
