@@ -5,10 +5,14 @@ How to init:
 ```sh
 git clone https://github.com/stackmystack/starter-project-ruby your-project
 cd your-project
-make help
-# Read what's available.
-make init your-project
+just init your-project
 # Pay attention to the output, it's in red.
+```
+
+If you don't have [`just`](https://github.com/casey/just) installed:
+
+```sh
+bin/init.rb your-project
 ```
 
 ## Usage
