@@ -52,11 +52,11 @@ BYE = <<~MSG
 
       1. rm -rf .git
       1. rm bin/init.rb
-      1. remove the init target from Makefile
+      1. remove the init target from justfile
       1. customize #{project_name}.gemspec
       1. customize LICENSE
       1. customize README.md
-      1. make setup
+      1. just setup
 
   If you want to start over, use:
 

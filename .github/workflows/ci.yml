@@ -10,7 +10,7 @@ jobs:
         ruby: [3.3]
         platform:
           - { os: ubuntu, target: linux-x64 }
-        #   - { os: macos,  target: macos-arm64 }
+          # - { os: macos,  target: macos-arm64 }
     runs-on: ${{ matrix.platform.os }}-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,18 +18,20 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: setup deps
-        run: sudo apt-get install -y make 
+      - name: Install just
+        uses: taiki-e/install-action@v2
+        with:
+          tool: just
       - name: setup
-        run: make setup
+        run: just setup
       - name: lint
-        run: make lint
+        run: just lint
       - name: test
-        run: make test
+        run: just test
       - name: doc
-        run: make doc
+        run: just doc
       - name: package gem
-        run: make gem
+        run: just gem
       - name: github release
         if: github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v1

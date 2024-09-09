@@ -28,19 +28,21 @@ jobs:
         uses: actions/checkout@v4
       - name: setup Pages
         uses: actions/configure-pages@v4
-      - name: setup deps
-        run: sudo apt-get install -y make 
+      - name: Install just
+        uses: taiki-e/install-action@v2
+        with:
+          tool: just
       - name: set up ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
           bundler-cache: true
       - name: Generate docs
-        run: make doc
+        run: just doc
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'rdoc'
+          path: "rdoc"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

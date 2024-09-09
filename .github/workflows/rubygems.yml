@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Install just
+        uses: taiki-e/install-action@v2
+        with:
+          tool: just
 
       - name: Fetch Github Release Asset
         uses: dsaltares/fetch-gh-release-asset@1.1.0
@@ -25,4 +29,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_API_KEY}}
-          RELEASE_COMMAND: make publish
+          RELEASE_COMMAND: just publish
