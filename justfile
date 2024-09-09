@@ -67,4 +67,3 @@ setup:
 [group('test')]
 test *args:
   bundle exec rake test {{ if args == '' { '' } else { '-- ' + args } }}
-
