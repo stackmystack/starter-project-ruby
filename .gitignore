@@ -4,15 +4,15 @@
 .rdbg.breakpoints
 /.config
 /.vendor
-/coverage/
 /InstalledFiles
+/coverage/
+/doc/
 /pkg/
-/spec/reports/
 /spec/examples.txt
+/spec/reports/
 /test/tmp/
 /test/version_tmp/
 /tmp/
-/doc/
 
 # Used by dotenv library to load environment variables.
 # .env
