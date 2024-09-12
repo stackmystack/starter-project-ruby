@@ -7,15 +7,6 @@ VERSION := shell("ruby -r ./" + VERSION_FILE  + " -e 'puts YourGemName::VERSION'
 GEM_FILE := GEM_NAME + '-' + VERSION + '.gem'
 PKG_OUT := 'pkg'
 
-BIN_DIR := 'bin'
-MAIN_SCRIPT := BIN_DIR / 'main.rb'
-REPL_SCRIPT := BIN_DIR / 'repl.rb'
-
-EXEC := 'bundle exec'
-RAKE := EXEC + ' rake'
-IRB := EXEC + ' irb'
-RUBY := EXEC + ' ruby'
-
 default: test
 
 [group('lint')]
@@ -23,7 +14,7 @@ check: doc-stats lint
 
 [group('develop')]
 debug *args:
-  bundle exec rdbg -x .rdbg.breakpoints -c -- bundle exec ruby -r ./{{LIB_FILE}} {{MAIN_SCRIPT}} {{args}}
+  bundle exec rdbg -x .rdbg.breakpoints -c -- bundle exec ruby -r ./{{LIB_FILE}} ./bin/main.rb {{args}}
 
 [group('doc')]
 doc:
@@ -44,16 +35,16 @@ lint:
   bundle exec rubocop --config .rubocop.yml
 
 [group('publish')]
-publish version:
-  gem -C {{PKG_OUT}} push {{GEM_NAME}}-{{version}}.gem
+publish:
+  gem -C {{PKG_OUT}} push {{GEM_FILE}}
 
 [group('develop')]
 repl:
-  bundle exec irb -r ./{{LIB_FILE}} -r ./{{REPL_SCRIPT}}
+  bundle exec irb -r ./{{LIB_FILE}} -r ./bin/repl.rb
 
 [group('develop')]
 run *args:
-  bundle exec ruby -r ./{{LIB_FILE}} ./{{MAIN_SCRIPT}} {{args}}
+  bundle exec ruby -r ./{{LIB_FILE}} ./bin/main.rb {{args}}
 
 [group('develop')]
 setup:
