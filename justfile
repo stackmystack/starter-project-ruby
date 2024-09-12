@@ -39,16 +39,13 @@ gem:
   mkdir -p {{PKG_OUT}}
   bundle exec gem build --strict --output {{PKG_OUT}}/{{GEM_FILE}}
 
-init *args:
-  bin/init.rb {{args}}
-
 [group('lint')]
 lint:
   bundle exec rubocop --config .rubocop.yml
 
 [group('publish')]
-publish: gem
-  gem -C {{PKG_OUT}} push {{GEM_FILE}}
+publish version:
+  gem -C {{PKG_OUT}} push {{GEM_NAME}}-{{version}}.gem
 
 [group('develop')]
 repl:

@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
+lib = File.expand_path('lib', __dir__)
+$LOAD_PATH.unshift(lib) if !$LOAD_PATH.include?(lib)
+
+require 'your_gem_name'
+
 Gem::Specification.new do |spec|
   spec.name          = 'your_gem_name'
-  spec.version       = '1.0.0'
-  spec.authors       = ['Your Name']
-  spec.email         = ['your_email@example.com']
+  spec.version       = YourGemName::VERSION
+  spec.authors       = ['Your Name <your_email@example.com>']
 
   spec.summary       = 'Short summary of your gem'
   spec.description   = 'A longer description of your gem'
